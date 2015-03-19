@@ -16,7 +16,8 @@
 		<DebugSymbols>true</DebugSymbols>
 		<DebugType>full</DebugType>
 		<Optimize>false</Optimize>
-		<OutputPath>bin\Debug\</OutputPath>
+		<OutputPath>$(SolutionDir)artifacts\bin\Athena\Debug\</OutputPath>
+        <IntermediateOutputPath>$(SolutionDir)artifacts\obj\Athena\Debug\</IntermediateOutputPath>
 		<DefineConstants>DEBUG;TRACE</DefineConstants>
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
@@ -24,21 +25,22 @@
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
 		<DebugType>pdbonly</DebugType>
  		<Optimize>true</Optimize>
-		<OutputPath>bin\Release\</OutputPath>
+		<OutputPath>$(SolutionDir)artifacts\bin\Athena\Release\</OutputPath>
+        <IntermediateOutputPath>$(SolutionDir)artifacts\obj\Athena\Release\</IntermediateOutputPath>
 		<DefineConstants>TRACE</DefineConstants>
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="System"/>
-		
+
 		<Reference Include="System.Core"/>
 		<Reference Include="System.Xml.Linq"/>
 		<Reference Include="System.Data.DataSetExtensions"/>
-		
-		
+
+
 		<Reference Include="Microsoft.CSharp"/>
- 		
+
 		<Reference Include="System.Data"/>
 		<Reference Include="System.Xml"/>
 	</ItemGroup>
@@ -48,7 +50,7 @@
 		<Compile Include="Properties\AssemblyInfo.cs" />
 	</ItemGroup>
 	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
