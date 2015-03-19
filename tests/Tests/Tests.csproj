@@ -57,7 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestTests.cs" />
+    <Compile Include="GameTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +70,10 @@
     <ProjectReference Include="..\..\src\Athena\Athena.csproj">
       <Project>{c6fc9be4-ad34-400b-8e9d-b00641dda326}</Project>
       <Name>Athena</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestPlugin\TestPlugin.csproj">
+      <Project>{7489d084-17b2-4a85-8871-e74c9f9dc030}</Project>
+      <Name>TestPlugin</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

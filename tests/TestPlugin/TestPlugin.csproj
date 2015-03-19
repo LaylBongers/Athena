@@ -4,21 +4,20 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C6FC9BE4-AD34-400B-8E9D-B00641DDA326}</ProjectGuid>
+    <ProjectGuid>{7489D084-17B2-4A85-8871-E74C9F9DC030}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Athena</RootNamespace>
-    <AssemblyName>Athena</AssemblyName>
+    <RootNamespace>TestPlugin</RootNamespace>
+    <AssemblyName>TestPlugin</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>69da805f</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>$(SolutionDir)artifacts\bin\Athena\Debug\</OutputPath>
-    <IntermediateOutputPath>$(SolutionDir)artifacts\obj\Athena\Debug\</IntermediateOutputPath>
+    <OutputPath>$(SolutionDir)artifacts\bin\TestPlugin\Debug\</OutputPath>
+    <IntermediateOutputPath>$(SolutionDir)artifacts\obj\TestPlugin\Debug\</IntermediateOutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -26,8 +25,8 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>$(SolutionDir)artifacts\bin\Athena\Release\</OutputPath>
-    <IntermediateOutputPath>$(SolutionDir)artifacts\obj\Athena\Release\</IntermediateOutputPath>
+    <OutputPath>$(SolutionDir)artifacts\bin\TestPlugin\Release\</OutputPath>
+    <IntermediateOutputPath>$(SolutionDir)artifacts\obj\TestPlugin\Release\</IntermediateOutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -42,9 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game.cs" />
-    <Compile Include="LoadPluginsInfo.cs" />
-    <Compile Include="LoadServicesInfo.cs" />
+    <Compile Include="DummyClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
