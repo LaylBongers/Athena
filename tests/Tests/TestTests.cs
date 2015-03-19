@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using Athena;
+using Xunit;
 
 namespace Tests
 {
@@ -7,7 +8,7 @@ namespace Tests
 		[Fact]
 		public void ExampleTest()
 		{
-			Assert.True(true);
+			Assert.True(DummyClass.DummyMethod());
 		}
 	}
 }
