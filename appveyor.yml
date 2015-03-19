@@ -1,0 +1,41 @@
+# We're using C# 6.0, so we need to adjust the platform
+os: Visual Studio 2015 CTP 6
+
+# The path also needs to be set correctly so we get the correct tools
+install:
+  - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
+
+configuration: Release
+
+# Rewrites the Verison on the DLLs
+version: 1.0.{build}
+assembly_info:
+  patch: true
+  file: AssemblyInfo.*
+  assembly_version: "{version}"
+  assembly_file_version: "{version}"
+  assembly_informational_version: "{version}"
+
+environment:
+  COVERALLS_REPO_TOKEN:
+    secure: f7A1s0YfsSk/P11q8gqNtY83PyhNgIOCQILVKTkJSM6ejWbCp+F9uvFB8k0d7KtR
+
+nuget:
+  account_feed: true
+  project_feed: true
+
+# Restore NuGet packages before running MSBuild
+before_build:
+  - nuget restore
+
+build:
+  verbosity: minimal
+  project: Athena.sln
+  publish_nuget: true
+# If the symbol server dies, disable this so nuget updates can go through
+  publish_nuget_symbols: true
+
+# This is for publishing to coveralls.io
+after_test:
+  - ps: .\packages\OpenCover.4.5.3723\OpenCover.Console.exe -register:user -target:"xunit.console" "-targetargs:artifacts\bin\Tests\$env:CONFIGURATION\Tests.dll -noshadow -appveyor" "-filter:+[Athena*]*" -output:coverage.xml
+  - .\packages\coveralls.io.1.3.0\tools\coveralls.net.exe --opencover coverage.xml
