@@ -1,6 +1,8 @@
-﻿namespace TestPlugin
+﻿using Athena;
+
+namespace TestPlugin
 {
-	public class TestService
+	public class TestService : IService
 	{
 	}
 }
