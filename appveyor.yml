@@ -35,6 +35,10 @@ build:
 # If the symbol server dies, disable this so nuget updates can go through
   publish_nuget_symbols: true
 
+test:
+  assemblies:
+    - Tests.dll
+
 # This is for publishing to coveralls.io
 after_test:
   - nuget install xunit.runner.console -Version 2.0.0-rc4-build2924 -Pre
