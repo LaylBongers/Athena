@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Athena
 {
-	public class LoadServicesInfo
+	public sealed class LoadServicesInfo
 	{
 		public Collection<ServiceReference> Services { get; } = new Collection<ServiceReference>();
 

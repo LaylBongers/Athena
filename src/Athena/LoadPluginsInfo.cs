@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace Athena
 {
-	public class LoadPluginsInfo
+	public sealed class LoadPluginsInfo
 	{
 		public Collection<AssemblyName> PluginAssemblies { get; } = new Collection<AssemblyName>();
 

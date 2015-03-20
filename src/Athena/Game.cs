@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace Athena
 {
-	public class Game
+	public sealed class Game
 	{
 		private readonly List<IService> _services = new List<IService>();
 
@@ -27,6 +27,8 @@ namespace Athena
 
 		public void LoadPlugins(LoadPluginsInfo info)
 		{
+			Validate.NotNull(info, "info");
+
 			foreach (var assemblyName in info.PluginAssemblies)
 			{
 				// Load in the assembly, .NET automatically prevents duplicate loading
@@ -50,6 +52,8 @@ namespace Athena
 
 		public void LoadServices(LoadServicesInfo info)
 		{
+			Validate.NotNull(info, "info");
+
 			foreach (var requestedService in info.Services)
 			{
 				// Look up the requested service by Guid
