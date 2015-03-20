@@ -6,7 +6,8 @@ using Xunit;
 
 namespace Tests
 {
-	[Trait("Category", "Athena.Game")]
+	[Trait("Type", "Unit")]
+	[Trait("Class", "Athena.Game")]
 	public class GameTests
 	{
 		[Fact]
