@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Reflection;
 
 namespace Athena
 {
@@ -8,5 +10,7 @@ namespace Athena
 		{
 			throw new NotImplementedException();
 		}
+
+		public Collection<AssemblyName> PluginAssemblies { get; } = new Collection<AssemblyName>();
 	}
 }

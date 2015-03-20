@@ -1,5 +1,7 @@
-﻿using System.Reflection;
-using System.Reflection.Emit;
+﻿using System.Linq;
+using System.Reflection;
+using Athena;
+using TestPlugin;
 using Xunit;
 
 namespace Tests
@@ -8,15 +10,18 @@ namespace Tests
 	public class GameTests
 	{
 		[Fact]
-		public void LoadPlugins_ValidAssembly_Loads()
+		public void LoadPlugins_ValidAssembly_LoadsAvailableServices()
 		{
 			// Arrange
-			var assemblyName = AssemblyName.GetAssemblyName("./TestPlugin.dll");
-			//Assert.False(/*Make sure not loaded before this*/);
+			var game = new Game();
+			var pluginsInfo = new LoadPluginsInfo();
+			pluginsInfo.PluginAssemblies.Add(AssemblyName.GetAssemblyName("./TestPlugin.dll"));
 
 			// Act
+			game.LoadPlugins(pluginsInfo);
 
 			// Assert
+			Assert.Contains(typeof(TestService), game.AvailableServices.Select(s => s.ServiceType));
 		}
 	}
 }

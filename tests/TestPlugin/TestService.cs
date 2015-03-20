@@ -1,6 +1,6 @@
 ﻿namespace TestPlugin
 {
-	public class DummyClass
+	public class TestService
 	{
 	}
 }

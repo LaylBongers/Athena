@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 
 namespace Athena
 {
@@ -18,5 +19,7 @@ namespace Athena
 		{
 			throw new NotImplementedException();
 		}
+
+		public Collection<ServiceInfo> AvailableServices { get; } = new Collection<ServiceInfo>();
 	}
 }
