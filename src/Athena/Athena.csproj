@@ -47,7 +47,8 @@
     <Compile Include="LoadPluginsInfo.cs" />
     <Compile Include="LoadServicesInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceInfo.cs" />
+    <Compile Include="ServiceAttribute.cs" />
+    <Compile Include="ServiceReference.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

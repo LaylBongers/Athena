@@ -22,7 +22,26 @@ namespace Tests
 			game.LoadPlugins(pluginsInfo);
 
 			// Assert
-			Assert.Contains(typeof(TestService), game.AvailableServices.Select(s => s.ServiceType));
+			Assert.Contains(typeof (TestService), game.AvailableServices);
+		}
+
+		[Fact]
+		public void LoadServices_AvailableService_LoadsService()
+		{
+			// Arrange
+			var game = new Game();
+			game.AvailableServices.Add(typeof (TestService));
+			var info = new LoadServicesInfo();
+			info.Services.Add(new ServiceReference
+			{
+				Guid = typeof (TestService).GetCustomAttribute<ServiceAttribute>().Guid
+			});
+
+			// Act
+			game.LoadServices(info);
+
+			// Assert
+			Assert.Contains(typeof (TestService), game.Services.Select(s => s.GetType()));
 		}
 	}
 }

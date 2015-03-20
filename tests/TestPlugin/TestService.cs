@@ -2,6 +2,7 @@
 
 namespace TestPlugin
 {
+	[Service("Test Service", "E73273D1-00D2-42C3-A2A5-23139A5F420B")]
 	public class TestService : IService
 	{
 	}
