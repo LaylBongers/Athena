@@ -4,32 +4,29 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{752422D1-F8B1-43FA-B1CC-C8A5DFEC90A3}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{6F990BBB-EDFF-4075-B88B-D4F8182DF8D3}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Athena.Launcher</RootNamespace>
-    <AssemblyName>Athena.Launcher</AssemblyName>
+    <RootNamespace>Athena.Toolbox</RootNamespace>
+    <AssemblyName>Athena.Toolbox</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>$(SolutionDir)artifacts\bin\Athena.Launcher\Debug\</OutputPath>
-    <IntermediateOutputPath>$(SolutionDir)artifacts\obj\Athena.Launcher\Debug\</IntermediateOutputPath>
+    <OutputPath>$(SolutionDir)artifacts\bin\Athena.Toolbox\Debug\</OutputPath>
+    <IntermediateOutputPath>$(SolutionDir)artifacts\obj\Athena.Toolbox\Debug\</IntermediateOutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>$(SolutionDir)artifacts\bin\Athena.Launcher\Release\</OutputPath>
-    <IntermediateOutputPath>$(SolutionDir)artifacts\obj\Athena.Launcher\Release\</IntermediateOutputPath>
+    <OutputPath>$(SolutionDir)artifacts\bin\Athena.Toolbox\Release\</OutputPath>
+    <IntermediateOutputPath>$(SolutionDir)artifacts\obj\Athena.Toolbox\Release\</IntermediateOutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -44,30 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="AthenaGameLoopService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="Services.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Athena\Athena.csproj">
       <Project>{c6fc9be4-ad34-400b-8e9d-b00641dda326}</Project>
       <Name>Athena</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Content Include="..\..\artifacts\obj\Athena.Toolbox\$(Configuration)\Athena.Toolbox.dll">
-      <Link>Plugins\Athena.Toolbox.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Plugins\Dummy.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
