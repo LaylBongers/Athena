@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 
@@ -32,6 +33,7 @@ namespace Athena
 			foreach (var assemblyName in info.PluginAssemblies)
 			{
 				// Load in the assembly, .NET automatically prevents duplicate loading
+				Trace.WriteLine("Loading plugin \"" + assemblyName + "\"...");
 				var assembly = Assembly.Load(assemblyName);
 
 				// Scan the assembly for exported types that implement IService
@@ -50,11 +52,11 @@ namespace Athena
 			}
 		}
 
-		public void LoadServices(LoadServicesInfo info)
+		public void LoadServices(IEnumerable<ServiceReference> services)
 		{
-			Validate.NotNull(info, "info");
+			Validate.NotNull(services, "services");
 
-			foreach (var requestedService in info.Services)
+			foreach (var requestedService in services)
 			{
 				// Look up the requested service by Guid
 				var foundService = AvailableServices

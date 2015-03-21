@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace Athena
 {
-	public sealed class LoadServicesInfo
+	public static class LoadServicesInfo
 	{
-		public Collection<ServiceReference> Services { get; } = new Collection<ServiceReference>();
-
-		public static LoadServicesInfo FromFile(string file)
+		public static List<ServiceReference> FromFile(string file)
 		{
 			return FromJson(File.ReadAllText(file));
 		}
 
-		public static LoadServicesInfo FromJson(string json)
+		public static List<ServiceReference> FromJson(string json)
 		{
-			throw new NotImplementedException();
+			return JsonConvert.DeserializeObject<List<ServiceReference>>(json);
 		}
 	}
 }

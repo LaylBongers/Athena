@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace Athena
 {
@@ -10,11 +11,13 @@ namespace Athena
 		/// <summary>
 		///     Gets or sets the name of the service being referenced. For human readability of files only.
 		/// </summary>
+		[JsonProperty("name")]
 		public string FriendlyName { get; set; }
 
 		/// <summary>
 		///     Gets or sets the guid of the service being referenced. Used for lookup.
 		/// </summary>
+		[JsonProperty("guid")]
 		public Guid Guid { get; set; }
 	}
 }

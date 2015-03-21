@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Athena;
 using TestPlugin;
@@ -31,14 +32,16 @@ namespace Tests
 			// Arrange
 			var game = new Game();
 			game.AvailableServices.Add(typeof (TestService));
-			var info = new LoadServicesInfo();
-			info.Services.Add(new ServiceReference
+			var services = new List<ServiceReference>
 			{
-				Guid = typeof (TestService).GetCustomAttribute<ServiceAttribute>().Guid
-			});
+				new ServiceReference
+				{
+					Guid = typeof (TestService).GetCustomAttribute<ServiceAttribute>().Guid
+				}
+			};
 
 			// Act
-			game.LoadServices(info);
+			game.LoadServices(services);
 
 			// Assert
 			Assert.Contains(typeof (TestService), game.Services.Select(s => s.GetType()));
