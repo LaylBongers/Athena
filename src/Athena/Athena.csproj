@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DependAttribute.cs" />
+    <Compile Include="DependConstraintAttribute.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="LoadPluginsInfo.cs" />

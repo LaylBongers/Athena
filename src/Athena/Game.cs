@@ -56,6 +56,7 @@ namespace Athena
 		{
 			Validate.NotNull(services, "services");
 
+			// Add all the services to the list
 			foreach (var requestedService in services)
 			{
 				// Look up the requested service by Guid
@@ -84,11 +85,47 @@ namespace Athena
 				var service = (IService) constructor.Invoke(new object[0]);
 				_services.Add(service);
 			}
+
+			// Now resolve all dependencies for all services
+			var dependencies = GetAvailableDependencies();
+			foreach (var service in Services)
+			{
+				var fields = service.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
+
+				// Go through all fields
+				foreach (var field in fields)
+				{
+					// If this field does not have a [Depend] attribute we don't need to resolve it
+					if (field.GetCustomAttribute<DependAttribute>() == null)
+						continue;
+
+					// Find a service that fits the type of the field
+					var dependency = dependencies.FirstOrDefault(s => field.FieldType.IsInstanceOfType(s));
+
+					// If we couldn't find one, leave it null
+					if (dependency == null)
+						continue;
+
+					// We found one, set the value
+					field.SetValue(service, dependency);
+				}
+			}
 		}
 
 		public void Run()
 		{
-			throw new NotImplementedException();
+			foreach (var service in Services)
+				service.Start();
+
+			foreach (var service in Services)
+				service.Cleanup();
+		}
+
+		private List<object> GetAvailableDependencies()
+		{
+			return Services
+				.Concat(new object[] {this})
+				.ToList();
 		}
 	}
 }

@@ -2,12 +2,6 @@
 {
 	internal class Program
 	{
-		// Just a little note for once I get to services
-		//[Depend] private ISomeService _service;
-		//[Depend] private SomeComponent _component;
-		//[DependConstraint<ISomeService>]
-		//public class StandardSomeService : ISomeService {}
-
 		private static void Main(string[] args)
 		{
 			var game = new Game();

@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <NoWarn>0649</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <NoWarn>0649</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -41,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DependencyService.cs" />
+    <Compile Include="DependingService.cs" />
+    <Compile Include="IDependencyService.cs" />
+    <Compile Include="StartStopService.cs" />
     <Compile Include="TestService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

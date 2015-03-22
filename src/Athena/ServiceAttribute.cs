@@ -3,10 +3,10 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Athena
 {
+	[SuppressMessage("Microsoft.Design", "CA1019:DefineAccessorsForAttributeArguments")]
 	[AttributeUsage(AttributeTargets.Class)]
 	public sealed class ServiceAttribute : Attribute
 	{
-		[SuppressMessage("Microsoft.Design", "CA1019:DefineAccessorsForAttributeArguments")]
 		public ServiceAttribute(string friendlyName, string guid)
 		{
 			FriendlyName = friendlyName;
