@@ -10,7 +10,7 @@ namespace TestPlugin
 		public IDependencyService Dependency => _dependency;
 		public Game Game => _game;
 
-		public void Start()
+		public void Initialize()
 		{
 		}
 

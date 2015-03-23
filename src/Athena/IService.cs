@@ -2,7 +2,7 @@
 {
 	public interface IService
 	{
-		void Start();
+		void Initialize();
 		void Cleanup();
 	}
 }

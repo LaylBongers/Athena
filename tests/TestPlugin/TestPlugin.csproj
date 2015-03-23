@@ -46,7 +46,7 @@
     <Compile Include="DependencyService.cs" />
     <Compile Include="DependingService.cs" />
     <Compile Include="IDependencyService.cs" />
-    <Compile Include="StartStopService.cs" />
+    <Compile Include="InitializeCleanupService.cs" />
     <Compile Include="TestService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

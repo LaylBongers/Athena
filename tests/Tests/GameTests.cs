@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Athena;
+using NSubstitute;
 using TestPlugin;
 using Xunit;
 
@@ -61,24 +62,39 @@ namespace Tests
 		}
 
 		[Fact]
-		public void Run_WithService_StartsAndCleansServices()
+		public void Run_WithService_InitializesAndCleansServices()
 		{
 			// Arrange
-			StartStopService.Started = false;
-			StartStopService.Cleaned = false;
+			InitializeCleanupService.Started = false;
+			InitializeCleanupService.Cleaned = false;
 
 			var game = new Game();
-			game.AvailableServices.Add(typeof (StartStopService));
-			var services = GetReferencesFor(typeof (StartStopService));
+			game.AvailableServices.Add(typeof (InitializeCleanupService));
+			var services = GetReferencesFor(typeof (InitializeCleanupService));
 			game.LoadServices(services);
 
 			// Act
 			game.Run();
 
 			// Assert
-			Assert.True(StartStopService.Started);
-			Assert.True(StartStopService.Cleaned);
+			Assert.True(InitializeCleanupService.Started);
+			Assert.True(InitializeCleanupService.Cleaned);
 		}
+
+		[Fact]
+		public void Run_WithEntryPoint_RunEntryPoint()
+		{
+			// Arrange
+			var action = Substitute.For<Action>();
+			var game = new Game();
+			game.RegisterRunThread(action);
+
+			// Act
+			game.Run();
+
+			// Assert
+			action.Received(1).Invoke();
+        }
 
 		private static IEnumerable<ServiceReference> GetReferencesFor(params Type[] args)
 		{

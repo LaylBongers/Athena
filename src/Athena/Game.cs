@@ -4,12 +4,14 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 
 namespace Athena
 {
 	public sealed class Game
 	{
 		private readonly List<IService> _services = new List<IService>();
+		private readonly List<Action> _runThreads = new List<Action>();
 
 		public Game()
 		{
@@ -112,11 +114,33 @@ namespace Athena
 			}
 		}
 
+		public void RegisterRunThread(Action action)
+		{
+			_runThreads.Add(action);
+		}
+
 		public void Run()
 		{
+			// Initializa all the services
 			foreach (var service in Services)
-				service.Start();
+				service.Initialize();
 
+			// Start all the runtime threads
+			var threads = new List<Thread>();
+			foreach (var action in _runThreads)
+			{
+				var thread = new Thread(new ThreadStart(action));
+				thread.Start();
+				threads.Add(thread);
+			}
+
+			// Wait for all the runtime threads to finish
+			foreach (var thread in threads)
+			{
+				thread.Join();
+			}
+
+			// Clean up all the services
 			foreach (var service in Services)
 				service.Cleanup();
 		}

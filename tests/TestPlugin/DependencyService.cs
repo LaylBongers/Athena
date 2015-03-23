@@ -6,7 +6,7 @@ namespace TestPlugin
 	[DependConstraint(typeof (IDependencyService))]
 	public class DependencyService : IDependencyService
 	{
-		public void Start()
+		public void Initialize()
 		{
 		}
 
