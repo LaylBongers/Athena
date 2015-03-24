@@ -96,7 +96,26 @@ namespace Tests
 			// Assert
 			action.Received(1).Invoke(Arg.Any<CancellationToken>());
         }
-		
+
+		[Fact]
+		public void Quit_WithActiveRuntime_CancelsRuntime()
+		{
+			// Arrange
+			var cancelRequested = false;
+			var game = new Game();
+			game.RegisterRuntime(token =>
+			{
+				game.Quit();
+				cancelRequested = token.IsCancellationRequested;
+			});
+
+			// Act
+			game.Run();
+
+			// Assert
+			Assert.True(cancelRequested);
+		}
+
 		private static IEnumerable<ServiceReference> GetReferencesFor(params Type[] args)
 		{
 			return args.Select(a => new ServiceReference
