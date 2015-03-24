@@ -13,12 +13,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "tests\Tests\Tests.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Athena.Launcher", "src\Athena.Launcher\Athena.Launcher.csproj", "{752422D1-F8B1-43FA-B1CC-C8A5DFEC90A3}"
 	ProjectSection(ProjectDependencies) = postProject
+		{C3765067-5AC3-4D39-B480-E7DF90A5A3C9} = {C3765067-5AC3-4D39-B480-E7DF90A5A3C9}
 		{6F990BBB-EDFF-4075-B88B-D4F8182DF8D3} = {6F990BBB-EDFF-4075-B88B-D4F8182DF8D3}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPlugin", "tests\TestPlugin\TestPlugin.csproj", "{7489D084-17B2-4A85-8871-E74C9F9DC030}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Athena.Toolbox", "src\Athena.Toolbox\Athena.Toolbox.csproj", "{6F990BBB-EDFF-4075-B88B-D4F8182DF8D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Athena.Toolbox.OpenTK", "src\Athena.Toolbox.OpenTK\Athena.Toolbox.OpenTK.csproj", "{C3765067-5AC3-4D39-B480-E7DF90A5A3C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,6 +49,10 @@ Global
 		{6F990BBB-EDFF-4075-B88B-D4F8182DF8D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F990BBB-EDFF-4075-B88B-D4F8182DF8D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F990BBB-EDFF-4075-B88B-D4F8182DF8D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3765067-5AC3-4D39-B480-E7DF90A5A3C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3765067-5AC3-4D39-B480-E7DF90A5A3C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3765067-5AC3-4D39-B480-E7DF90A5A3C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3765067-5AC3-4D39-B480-E7DF90A5A3C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,5 +63,6 @@ Global
 		{752422D1-F8B1-43FA-B1CC-C8A5DFEC90A3} = {4967E2D8-4964-4106-B296-CB7AB2D0D379}
 		{7489D084-17B2-4A85-8871-E74C9F9DC030} = {4E1BCCFE-53F8-44E0-B6C8-15EB0048A8D1}
 		{6F990BBB-EDFF-4075-B88B-D4F8182DF8D3} = {4967E2D8-4964-4106-B296-CB7AB2D0D379}
+		{C3765067-5AC3-4D39-B480-E7DF90A5A3C9} = {4967E2D8-4964-4106-B296-CB7AB2D0D379}
 	EndGlobalSection
 EndGlobal

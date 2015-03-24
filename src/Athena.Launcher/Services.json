@@ -10,11 +10,11 @@
 	{
 		"name": "Athena Game Loop Service",
 		"guid": "DE51302A-1D4D-4001-8BB8-1FD404B010D9"
-	} /*,
+	},
 	{
 		"name": "OpenTK Window Service",
 		"guid": "E80A2ADB-D094-4E1B-8B2C-82CFA9BAEE47"
-	},
+	} /*,
 	{
 		"name": "OpenTK Rendering Service",
 		"guid": "88E5C33F-875C-49E2-B6AD-463308998B9C"

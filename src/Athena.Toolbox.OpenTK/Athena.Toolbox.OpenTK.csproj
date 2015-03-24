@@ -4,39 +4,41 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{752422D1-F8B1-43FA-B1CC-C8A5DFEC90A3}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{C3765067-5AC3-4D39-B480-E7DF90A5A3C9}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Athena.Launcher</RootNamespace>
-    <AssemblyName>Athena.Launcher</AssemblyName>
+    <RootNamespace>Athena.Toolbox.OpenTK</RootNamespace>
+    <AssemblyName>Athena.Toolbox.OpenTK</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>$(SolutionDir)artifacts\bin\Athena.Launcher\Debug\</OutputPath>
-    <IntermediateOutputPath>$(SolutionDir)artifacts\obj\Athena.Launcher\Debug\</IntermediateOutputPath>
+    <OutputPath>$(SolutionDir)artifacts\bin\Athena.Toolbox.OpenTK\Debug\</OutputPath>
+    <IntermediateOutputPath>$(SolutionDir)artifacts\obj\Athena.Toolbox.OpenTK\Debug\</IntermediateOutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>$(SolutionDir)artifacts\bin\Athena.Launcher\Release\</OutputPath>
-    <IntermediateOutputPath>$(SolutionDir)artifacts\obj\Athena.Launcher\Release\</IntermediateOutputPath>
+    <OutputPath>$(SolutionDir)artifacts\bin\Athena.Toolbox.OpenTK\Release\</OutputPath>
+    <IntermediateOutputPath>$(SolutionDir)artifacts\obj\Athena.Toolbox.OpenTK\Release\</IntermediateOutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OpenTK.1.1.1589.5942\lib\NET40\OpenTK.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,34 +46,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="OpenTkWindowService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="Services.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Athena.Toolbox\Athena.Toolbox.csproj">
+      <Project>{6f990bbb-edff-4075-b88b-d4f8182df8d3}</Project>
+      <Name>Athena.Toolbox</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Athena\Athena.csproj">
       <Project>{c6fc9be4-ad34-400b-8e9d-b00641dda326}</Project>
       <Name>Athena</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Content Include="..\..\artifacts\obj\Athena.Toolbox\$(Configuration)\Athena.Toolbox.dll">
-      <Link>Plugins\Athena.Toolbox.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\artifacts\obj\Athena.Toolbox.OpenTK\$(Configuration)\Athena.Toolbox.OpenTK.dll">
-      <Link>Plugins\Athena.Toolbox.OpenTK.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Plugins\Dummy.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
