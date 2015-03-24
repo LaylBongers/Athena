@@ -69,6 +69,7 @@
     <Compile Include="LoadPluginsInfoTests.cs" />
     <Compile Include="LoadServicesInfoTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Toolbox\AthenaGameLoopServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -77,6 +78,10 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Athena.Toolbox\Athena.Toolbox.csproj">
+      <Project>{6f990bbb-edff-4075-b88b-d4f8182df8d3}</Project>
+      <Name>Athena.Toolbox</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Athena\Athena.csproj">
       <Project>{c6fc9be4-ad34-400b-8e9d-b00641dda326}</Project>
       <Name>Athena</Name>

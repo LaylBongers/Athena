@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Athena
 {
-	public sealed class Game
+	public sealed class Game : IDisposable
 	{
 		private readonly CancellationTokenSource _runtimeCancel = new CancellationTokenSource();
 		private readonly List<Action<CancellationToken>> _runtimes = new List<Action<CancellationToken>>();
@@ -29,7 +29,18 @@ namespace Athena
 		///     Gets a collection of services that have been loaded by LoadServices.
 		/// </summary>
 		public ReadOnlyCollection<IService> Services { get; }
-		
+
+		public void Dispose()
+		{
+			_runtimeCancel.Dispose();
+			GC.SuppressFinalize(this);
+		}
+
+		~Game()
+		{
+			Dispose();
+		}
+
 		public void LoadPlugins(LoadPluginsInfo info)
 		{
 			Validate.NotNull(info, "info");
@@ -94,25 +105,7 @@ namespace Athena
 			var dependencies = GetAvailableDependencies();
 			foreach (var service in Services)
 			{
-				var fields = service.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
-
-				// Go through all fields
-				foreach (var field in fields)
-				{
-					// If this field does not have a [Depend] attribute we don't need to resolve it
-					if (field.GetCustomAttribute<DependAttribute>() == null)
-						continue;
-
-					// Find a service that fits the type of the field
-					var dependency = dependencies.FirstOrDefault(s => field.FieldType.IsInstanceOfType(s));
-
-					// If we couldn't find one, leave it null
-					if (dependency == null)
-						continue;
-
-					// We found one, set the value
-					field.SetValue(service, dependency);
-				}
+				Inject.Into(service, dependencies);
 			}
 		}
 
@@ -153,7 +146,7 @@ namespace Athena
 		}
 
 		/// <summary>
-		///		Starts halting game execution. Will send a cancelation to all runtimes.
+		///     Starts halting game execution. Will send a cancelation to all runtimes.
 		/// </summary>
 		public void Quit()
 		{

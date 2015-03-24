@@ -4,15 +4,16 @@
 	{
 		private static void Main(string[] args)
 		{
-			var game = new Game();
+			using (var game = new Game())
+			{
+				var loadPluginsInfo = LoadPluginsInfo.FromDirectory("./Plugins/");
+				game.LoadPlugins(loadPluginsInfo);
 
-			var loadPluginsInfo = LoadPluginsInfo.FromDirectory("./Plugins/");
-			game.LoadPlugins(loadPluginsInfo);
+				var loadServicesInfo = LoadServicesInfo.FromFile("./Services.json");
+				game.LoadServices(loadServicesInfo);
 
-			var loadServicesInfo = LoadServicesInfo.FromFile("./Services.json");
-			game.LoadServices(loadServicesInfo);
-
-			game.Run();
+				game.Run();
+			}
 		}
 	}
 }

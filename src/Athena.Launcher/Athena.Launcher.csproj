@@ -54,6 +54,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Athena.Toolbox.OpenTK\Athena.Toolbox.OpenTK.csproj">
+      <Project>{c3765067-5ac3-4d39-b480-e7df90a5a3c9}</Project>
+      <Name>Athena.Toolbox.OpenTK</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Athena.Toolbox\Athena.Toolbox.csproj">
+      <Project>{6f990bbb-edff-4075-b88b-d4f8182df8d3}</Project>
+      <Name>Athena.Toolbox</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Athena\Athena.csproj">
       <Project>{c6fc9be4-ad34-400b-8e9d-b00641dda326}</Project>
       <Name>Athena</Name>

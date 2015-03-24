@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 
 namespace Athena.Toolbox
 {
@@ -7,23 +6,31 @@ namespace Athena.Toolbox
 	public class AthenaGameLoopService : IService
 	{
 		[Depend] private Game _game;
+		[Depend] private IWindowService _window;
 
 		public void Initialize()
 		{
-			_game.RegisterRuntime(Run);
+			_game.RegisterRuntime(RunService);
 		}
 
 		public void Cleanup()
 		{
 		}
 
-		private void Run(CancellationToken token)
+		public void Update()
 		{
+			_window.ProcessEvents();
+		}
+
+		public void RunService(CancellationToken token)
+		{
+			_window.CreateWindow();
+
 			while (!token.IsCancellationRequested)
 			{
-				Console.WriteLine("Hello from Game Loop!");
+				Update();
 
-				Thread.Sleep(100);
+				Thread.Sleep(10);
 			}
 		}
 	}
