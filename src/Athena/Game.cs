@@ -5,13 +5,15 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Athena
 {
 	public sealed class Game
 	{
+		private readonly CancellationTokenSource _runtimeCancel = new CancellationTokenSource();
+		private readonly List<Action<CancellationToken>> _runtimes = new List<Action<CancellationToken>>();
 		private readonly List<IService> _services = new List<IService>();
-		private readonly List<Action> _runThreads = new List<Action>();
 
 		public Game()
 		{
@@ -27,7 +29,7 @@ namespace Athena
 		///     Gets a collection of services that have been loaded by LoadServices.
 		/// </summary>
 		public ReadOnlyCollection<IService> Services { get; }
-
+		
 		public void LoadPlugins(LoadPluginsInfo info)
 		{
 			Validate.NotNull(info, "info");
@@ -114,9 +116,13 @@ namespace Athena
 			}
 		}
 
-		public void RegisterRunThread(Action action)
+		/// <summary>
+		///     Registers a new runtime to be started during game execution.
+		/// </summary>
+		/// <param name="action">The runtime to be started.</param>
+		public void RegisterRuntime(Action<CancellationToken> action)
 		{
-			_runThreads.Add(action);
+			_runtimes.Add(action);
 		}
 
 		public void Run()
@@ -125,24 +131,33 @@ namespace Athena
 			foreach (var service in Services)
 				service.Initialize();
 
-			// Start all the runtime threads
-			var threads = new List<Thread>();
-			foreach (var action in _runThreads)
+			// Start all the runtimes
+			var tasks = new List<Task>();
+			foreach (var action in _runtimes)
 			{
-				var thread = new Thread(new ThreadStart(action));
-				thread.Start();
-				threads.Add(thread);
+				var task = Task.Factory.StartNew(
+					() => action(_runtimeCancel.Token), _runtimeCancel.Token,
+					TaskCreationOptions.LongRunning, TaskScheduler.Default);
+				tasks.Add(task);
 			}
 
-			// Wait for all the runtime threads to finish
-			foreach (var thread in threads)
+			// Wait for all the runtimes to finish
+			foreach (var task in tasks)
 			{
-				thread.Join();
+				task.Wait();
 			}
 
 			// Clean up all the services
 			foreach (var service in Services)
 				service.Cleanup();
+		}
+
+		/// <summary>
+		///		Starts halting game execution. Will send a cancelation to all runtimes.
+		/// </summary>
+		public void Quit()
+		{
+			_runtimeCancel.Cancel();
 		}
 
 		private List<object> GetAvailableDependencies()

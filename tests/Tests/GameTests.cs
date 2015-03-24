@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using Athena;
 using NSubstitute;
 using TestPlugin;
@@ -82,20 +83,20 @@ namespace Tests
 		}
 
 		[Fact]
-		public void Run_WithEntryPoint_RunEntryPoint()
+		public void Run_WithRuntime_RunsRuntime()
 		{
 			// Arrange
-			var action = Substitute.For<Action>();
+			var action = Substitute.For<Action<CancellationToken>>();
 			var game = new Game();
-			game.RegisterRunThread(action);
+			game.RegisterRuntime(action);
 
 			// Act
 			game.Run();
 
 			// Assert
-			action.Received(1).Invoke();
+			action.Received(1).Invoke(Arg.Any<CancellationToken>());
         }
-
+		
 		private static IEnumerable<ServiceReference> GetReferencesFor(params Type[] args)
 		{
 			return args.Select(a => new ServiceReference
