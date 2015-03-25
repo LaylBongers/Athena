@@ -7,10 +7,11 @@ namespace Athena.Toolbox
 	{
 		[Depend] private Game _game;
 		[Depend] private IWindowService _window;
+		[Depend] private IWorldService _world;
 
 		public void Initialize()
 		{
-			_game.RegisterRuntime(RunService);
+			_game.RegisterRuntime(Runtime);
 		}
 
 		public void Cleanup()
@@ -20,9 +21,10 @@ namespace Athena.Toolbox
 		public void Update()
 		{
 			_window.ProcessEvents();
+			_world.TempSignalUpdated();
 		}
 
-		public void RunService(CancellationToken token)
+		public void Runtime(CancellationToken token)
 		{
 			_window.CreateWindow();
 

@@ -11,13 +11,13 @@ namespace Athena
 		/// <summary>
 		///     Gets or sets the name of the service being referenced. For human readability of files only.
 		/// </summary>
-		[JsonProperty("name")]
+		[JsonProperty("name", Required = Required.Default)]
 		public string FriendlyName { get; set; }
 
 		/// <summary>
 		///     Gets or sets the guid of the service being referenced. Used for lookup.
 		/// </summary>
-		[JsonProperty("guid")]
+		[JsonProperty("guid", Required = Required.Always)]
 		public Guid Guid { get; set; }
 	}
 }

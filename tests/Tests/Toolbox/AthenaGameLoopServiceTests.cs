@@ -11,7 +11,7 @@ namespace Tests.Toolbox
 	public class AthenaGameLoopServiceTests
 	{
 		[Fact]
-		public void Initialize_CreatesWindow()
+		public void Runtime_CreatesWindow()
 		{
 			// Unfortunately, windows have to be created from the thread that will be polling for updates.
 			// This means the game loop service runtime will have to be responsible for opening it.
@@ -22,7 +22,7 @@ namespace Tests.Toolbox
 			Inject.Into(loop, new[] { window });
 
 			// Act
-			loop.RunService(new CancellationToken(true));
+			loop.Runtime(new CancellationToken(true));
 
 			// Assert
 			window.Received(1).CreateWindow();

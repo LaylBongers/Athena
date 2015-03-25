@@ -47,6 +47,9 @@ namespace Athena.Toolbox.OpenTK
 				//_window.FocusedChanged += _window_ResizeMoveFocus;
 
 				_threadId = Thread.CurrentThread.ManagedThreadId;
+
+				// We probably won't render from the thread that creates the window
+				_window.Context.MakeCurrent(null);
 			}
 			catch
 			{
@@ -73,6 +76,11 @@ namespace Athena.Toolbox.OpenTK
 		public void SwapBuffers()
 		{
 			_window?.SwapBuffers();
+		}
+
+		public void MakeCurrent()
+		{
+			_window?.MakeCurrent();
 		}
 	}
 }

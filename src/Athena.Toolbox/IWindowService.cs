@@ -5,5 +5,6 @@
 		void CreateWindow();
 		void ProcessEvents();
 		void SwapBuffers();
+		void MakeCurrent();
 	}
 }
