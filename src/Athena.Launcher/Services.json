@@ -2,11 +2,11 @@
 	/*{
 		"name": "Athena Config Service",
 		"guid": "3EE02552-F00A-428C-85E8-65A7FB42D1AF"
-	},
+	},*/
 	{
 		"name": "Athena Logging Service",
 		"guid": "C12E0D36-B9A1-4EA4-8FC9-D37217A9D2D1"
-	},*/
+	},
 	{
 		"name": "Athena World Service",
 		"guid": "C4B112C1-0391-4A22-9CC2-81795B871060"

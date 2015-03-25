@@ -8,7 +8,8 @@ namespace Athena.Toolbox
 		[Depend] private Game _game;
 		[Depend] private IWindowService _window;
 		[Depend] private IWorldService _world;
-
+		[Depend] private ILoggingService _logging;
+		
 		public void Initialize()
 		{
 			_game.RegisterRuntime(Runtime);
@@ -26,6 +27,7 @@ namespace Athena.Toolbox
 
 		public void Runtime(CancellationToken token)
 		{
+			_logging.Info("Starting Game Loop Runtime...");
 			_window.CreateWindow();
 
 			while (!token.IsCancellationRequested)

@@ -3,9 +3,10 @@
 namespace Athena.Toolbox
 {
 	[Service("Athena World Service", "C4B112C1-0391-4A22-9CC2-81795B871060")]
+	[DependConstraint(typeof (IWorldService))]
 	public class AthenaWorldService : IService, IWorldService
 	{
-		private EventWaitHandle _waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
+		private readonly EventWaitHandle _waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
 
 		public void Initialize()
 		{
@@ -14,7 +15,7 @@ namespace Athena.Toolbox
 		public void Cleanup()
 		{
 		}
-		
+
 		public void WaitForUpdate()
 		{
 			_waitHandle.WaitOne();

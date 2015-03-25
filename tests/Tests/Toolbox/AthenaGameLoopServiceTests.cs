@@ -19,7 +19,7 @@ namespace Tests.Toolbox
 			// Arrange
 			var loop = new AthenaGameLoopService();
 			var window = Substitute.For<IWindowService>();
-			Inject.Into(loop, new[] { window });
+			Inject.Into(loop, new object[] {window, Substitute.For<ILoggingService>()});
 
 			// Act
 			loop.Runtime(new CancellationToken(true));
@@ -34,7 +34,7 @@ namespace Tests.Toolbox
 			// Arrange
 			var loop = new AthenaGameLoopService();
 			var window = Substitute.For<IWindowService>();
-			Inject.Into(loop, new[] {window});
+			Inject.Into(loop, new object[] {window, Substitute.For<IWorldService>(), Substitute.For<ILoggingService>()});
 
 			// Act
 			loop.Update();

@@ -10,6 +10,7 @@ namespace Athena.Toolbox.OpenTK
 		[Depend] private Game _game;
 		[Depend] private IWindowService _window;
 		[Depend] private IWorldService _world;
+		[Depend] private ILoggingService _logging;
 
 		public void Initialize()
 		{
@@ -22,6 +23,8 @@ namespace Athena.Toolbox.OpenTK
 
 		private void Runtime(CancellationToken token)
 		{
+			_logging.Info("Starting Rendering Runtime...");
+
 			while (!token.IsCancellationRequested)
 			{
 				// Wait until we get a signal that the world is updated

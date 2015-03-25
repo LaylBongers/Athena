@@ -128,8 +128,9 @@ namespace Athena
 			var tasks = new List<Task>();
 			foreach (var action in _runtimes)
 			{
+				var tempAction = action;
 				var task = Task.Factory.StartNew(
-					() => action(_runtimeCancel.Token), _runtimeCancel.Token,
+					() => tempAction(_runtimeCancel.Token), _runtimeCancel.Token,
 					TaskCreationOptions.LongRunning, TaskScheduler.Default);
 				tasks.Add(task);
 			}
