@@ -70,6 +70,8 @@
     <Compile Include="LoadServicesInfoTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Toolbox\AthenaGameLoopServiceTests.cs" />
+    <Compile Include="Toolbox\AthenaWorldServiceTests.cs" />
+    <Compile Include="Toolbox\EntityTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

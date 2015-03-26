@@ -25,12 +25,16 @@ namespace Athena.Toolbox
 		public void Update(TimeSpan elapsed)
 		{
 			_window.ProcessEvents();
-			_world.TempSignalUpdated();
+
+			_world.Update(elapsed);
 		}
 
-		public void Runtime(CancellationToken token)
+		private void Runtime(CancellationToken token)
 		{
 			_logging.Info("Starting Game Loop Runtime...");
+
+			// Unfortunately, windows have to be created from the thread that will be polling for updates
+			// This means the game loop service runtime will have to be responsible for opening it
 			_window.CreateWindow();
 
 			var stopwatch = new Stopwatch();

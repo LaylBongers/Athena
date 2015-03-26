@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CollectionExtensions.cs" />
     <Compile Include="DependAttribute.cs" />
     <Compile Include="DependConstraintAttribute.cs" />
     <Compile Include="Game.cs" />

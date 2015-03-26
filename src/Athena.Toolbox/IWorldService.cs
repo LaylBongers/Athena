@@ -1,8 +1,10 @@
-﻿namespace Athena.Toolbox
+﻿using System;
+
+namespace Athena.Toolbox
 {
 	public interface IWorldService
 	{
 		void WaitForUpdate();
-		void TempSignalUpdated();
+		void Update(TimeSpan elapsed);
 	}
 }

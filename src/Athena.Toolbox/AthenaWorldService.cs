@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 
 namespace Athena.Toolbox
 {
@@ -7,6 +8,8 @@ namespace Athena.Toolbox
 	public sealed class AthenaWorldService : IService, IWorldService
 	{
 		private EventWaitHandle _waitHandle;
+
+		public Entity Root { get; set; } = new Entity();
 
 		public void Initialize()
 		{
@@ -23,8 +26,9 @@ namespace Athena.Toolbox
 			_waitHandle.WaitOne();
 		}
 
-		public void TempSignalUpdated()
+		public void Update(TimeSpan elapsed)
 		{
+			Root.ForceInitialize();
 			_waitHandle.Set();
 		}
 	}
