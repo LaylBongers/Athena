@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="AthenaGameLoopService.cs" />
     <Compile Include="AthenaWorldService.cs" />
+    <Compile Include="IGameLoopService.cs" />
     <Compile Include="ILoggingService.cs" />
     <Compile Include="IWindowService.cs" />
     <Compile Include="IWorldService.cs" />

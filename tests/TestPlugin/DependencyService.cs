@@ -10,7 +10,7 @@ namespace TestPlugin
 		{
 		}
 
-		public void Cleanup()
+		public void Dispose()
 		{
 		}
 	}

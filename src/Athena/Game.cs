@@ -122,7 +122,9 @@ namespace Athena
 		{
 			// Initializa all the services
 			foreach (var service in Services)
+			{
 				service.Initialize();
+			}
 
 			// Start all the runtimes
 			var tasks = new List<Task>();
@@ -143,7 +145,9 @@ namespace Athena
 
 			// Clean up all the services
 			foreach (var service in Services)
-				service.Cleanup();
+			{
+				service.Dispose();
+			}
 		}
 
 		/// <summary>

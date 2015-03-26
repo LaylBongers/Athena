@@ -6,16 +6,16 @@ namespace TestPlugin
 	public class InitializeCleanupService : IService
 	{
 		public static bool Started { get; set; }
-		public static bool Cleaned { get; set; }
+		public static bool Disposed { get; set; }
 
 		public void Initialize()
 		{
 			Started = true;
 		}
 
-		public void Cleanup()
+		public void Dispose()
 		{
-			Cleaned = true;
+			Disposed = true;
 		}
 	}
 }

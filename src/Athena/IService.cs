@@ -1,8 +1,9 @@
-﻿namespace Athena
+﻿using System;
+
+namespace Athena
 {
-	public interface IService
+	public interface IService : IDisposable
 	{
 		void Initialize();
-		void Cleanup();
 	}
 }

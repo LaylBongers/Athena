@@ -67,7 +67,7 @@ namespace Tests
 		{
 			// Arrange
 			InitializeCleanupService.Started = false;
-			InitializeCleanupService.Cleaned = false;
+			InitializeCleanupService.Disposed = false;
 
 			var game = new Game();
 			game.AvailableServices.Add(typeof (InitializeCleanupService));
@@ -79,7 +79,7 @@ namespace Tests
 
 			// Assert
 			Assert.True(InitializeCleanupService.Started);
-			Assert.True(InitializeCleanupService.Cleaned);
+			Assert.True(InitializeCleanupService.Disposed);
 		}
 
 		[Fact]

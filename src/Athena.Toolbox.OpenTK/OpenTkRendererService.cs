@@ -5,7 +5,7 @@ using OpenTK.Graphics.OpenGL4;
 namespace Athena.Toolbox.OpenTK
 {
 	[Service("OpenTK Rendering Service", "88E5C33F-875C-49E2-B6AD-463308998B9C")]
-	public class OpenTkRendererService : IService
+	public sealed class OpenTkRendererService : IService
 	{
 		[Depend] private Game _game;
 		[Depend] private IWindowService _window;
@@ -17,7 +17,7 @@ namespace Athena.Toolbox.OpenTK
 			_game.RegisterRuntime(Runtime);
 		}
 
-		public void Cleanup()
+		public void Dispose()
 		{
 		}
 

@@ -8,7 +8,7 @@ namespace Athena.Toolbox.OpenTK
 {
 	[Service("OpenTK Window Service", "E80A2ADB-D094-4E1B-8B2C-82CFA9BAEE47")]
 	[DependConstraint(typeof (IWindowService))]
-	public class OpenTkWindowService : IService, IWindowService
+	public sealed class OpenTkWindowService : IService, IWindowService
 	{
 		[Depend] private Game _game;
 		private int _threadId;
@@ -18,10 +18,9 @@ namespace Athena.Toolbox.OpenTK
 		{
 		}
 
-		public void Cleanup()
+		public void Dispose()
 		{
 			_window?.Dispose();
-			_window = null;
 		}
 
 		public void CreateWindow()

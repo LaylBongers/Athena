@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Athena;
 using Athena.Toolbox;
 using NSubstitute;
@@ -37,7 +38,7 @@ namespace Tests.Toolbox
 			Inject.Into(loop, new object[] {window, Substitute.For<IWorldService>(), Substitute.For<ILoggingService>()});
 
 			// Act
-			loop.Update();
+			loop.Update(TimeSpan.FromSeconds(0.016));
 
 			// Assert
 			window.Received(1).ProcessEvents();
