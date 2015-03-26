@@ -33,14 +33,8 @@ namespace Athena
 		public void Dispose()
 		{
 			_runtimeCancel.Dispose();
-			GC.SuppressFinalize(this);
 		}
-
-		~Game()
-		{
-			Dispose();
-		}
-
+		
 		public void LoadPlugins(LoadPluginsInfo info)
 		{
 			Validate.NotNull(info, "info");

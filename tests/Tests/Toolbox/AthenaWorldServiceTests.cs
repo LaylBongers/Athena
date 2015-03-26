@@ -1,4 +1,5 @@
 ﻿using System;
+using Athena;
 using Athena.Toolbox;
 using Xunit;
 
@@ -13,6 +14,7 @@ namespace Tests.Toolbox
 		{
 			// Arrange
 			var world = new AthenaWorldService();
+			Inject.Into(world, new[] {new Game()});
 			world.Initialize();
 			var behavior = new TestBehavior();
 			world.Root.Children.Add(
@@ -27,7 +29,7 @@ namespace Tests.Toolbox
 			// Assert
 			Assert.True(behavior.IsInitialized);
 		}
-		
+
 		private class TestBehavior : IBehavior
 		{
 			public bool IsInitialized { get; private set; }
