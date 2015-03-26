@@ -19,6 +19,7 @@ namespace Athena.Toolbox
 		public void Dispose()
 		{
 			_waitHandle.Dispose();
+			Root.Dispose();
 		}
 
 		public void WaitForUpdate()

@@ -36,6 +36,10 @@ namespace Tests.Toolbox
 			{
 				IsInitialized = true;
 			}
+
+			public void Dispose()
+			{
+			}
 		}
 	}
 }

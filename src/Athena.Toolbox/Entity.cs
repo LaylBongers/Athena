@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace Athena.Toolbox
 {
-	public class Entity
+	public sealed class Entity : IDisposable
 	{
 		private readonly List<IBehavior> _behaviors = new List<IBehavior>();
 		private readonly List<Entity> _children = new List<Entity>();
@@ -21,10 +22,18 @@ namespace Athena.Toolbox
 		public ObservableCollection<IBehavior> Behaviors { get; }
 		public ObservableCollection<Entity> Children { get; }
 
-		private void Children_CollectionChanged(object sender, NotifyCollectionChangedEventArgs evt)
+		public void Dispose()
 		{
-			evt.ExecuteForAdded<Entity>(e => e.Parent = this);
-			evt.ExecuteForRemoved<Entity>(e => e.Parent = null);
+			foreach (var behavior in Behaviors)
+			{
+				behavior.Dispose();
+			}
+		}
+
+		public void Destroy()
+		{
+			Parent.Children.Remove(this);
+			Dispose();
 		}
 
 		/// <summary>
@@ -41,6 +50,12 @@ namespace Athena.Toolbox
 			{
 				behavior.Initialize();
 			}
+		}
+
+		private void Children_CollectionChanged(object sender, NotifyCollectionChangedEventArgs evt)
+		{
+			evt.ExecuteForAdded<Entity>(e => e.Parent = this);
+			evt.ExecuteForRemoved<Entity>(e => e.Parent = null);
 		}
 	}
 }
