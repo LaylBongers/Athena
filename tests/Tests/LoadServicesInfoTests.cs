@@ -30,7 +30,7 @@ namespace Tests
 			// Assert
 			Assert.Equal(1, result.Count);
 			Assert.Equal(expectedName, result[0].FriendlyName);
-			Assert.Equal(expectedGuid, result[0].Guid);
+			Assert.Equal(expectedGuid, result[0].TypeGuid);
 		}
     }
 }

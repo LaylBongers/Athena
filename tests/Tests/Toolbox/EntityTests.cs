@@ -35,10 +35,10 @@ namespace Tests.Toolbox
 			// Arrange
 			var entity = new Entity();
 			var behavior = new DependingBehavior();
-			var component = new TestComponent();
+			var data = new TestData();
 			var external = new TestExternal();
 
-			entity.Components.Add(component);
+			entity.Data.Add(data);
 			entity.Behaviors.Add(behavior);
 
 			// Act
@@ -46,7 +46,7 @@ namespace Tests.Toolbox
 
 			// Assert
 			Assert.Same(entity, behavior.Entity);
-			Assert.Same(component, behavior.Component);
+			Assert.Same(data, behavior.Data);
 			Assert.Same(external, behavior.External);
 		}
 
@@ -64,7 +64,7 @@ namespace Tests.Toolbox
 			}
 		}
 
-		private sealed class TestComponent
+		private sealed class TestData
 		{
 		}
 
@@ -74,10 +74,10 @@ namespace Tests.Toolbox
 
 		private sealed class DependingBehavior : IBehavior
 		{
-			[Depend] private TestComponent _component;
+			[Depend] private TestData _data;
 			[Depend] private Entity _entity;
 			[Depend] private TestExternal _external;
-			public TestComponent Component => _component;
+			public TestData Data => _data;
 			public Entity Entity => _entity;
 			public TestExternal External => _external;
 

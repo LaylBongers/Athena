@@ -120,7 +120,7 @@ namespace Tests
 		{
 			return args.Select(a => new ServiceReference
 			{
-				Guid = a.GetCustomAttribute<ServiceAttribute>().Guid
+				TypeGuid = a.GetCustomAttribute<ServiceAttribute>().Guid
 			});
 		}
 	}

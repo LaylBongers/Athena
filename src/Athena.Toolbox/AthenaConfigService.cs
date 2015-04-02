@@ -9,20 +9,9 @@ namespace Athena.Toolbox
 	[DependConstraint(typeof (IConfigService))]
 	public class AthenaConfigService : IService, IConfigService
 	{
-		public Config Default
-		{
-			get { throw new NotImplementedException(); }
-		}
+		private Config _default;
 
-		public void Initialize()
-		{
-			throw new NotImplementedException();
-		}
-
-		public void Dispose()
-		{
-			throw new NotImplementedException();
-		}
+		public Config Default => _default ?? (_default = LoadFile("Config.json"));
 
 		public Config LoadJson(string json)
 		{
@@ -34,5 +23,12 @@ namespace Athena.Toolbox
 			return LoadJson(File.ReadAllText(file));
 		}
 
+		public void Initialize()
+		{
+		}
+
+		public void Dispose()
+		{
+		}
 	}
 }

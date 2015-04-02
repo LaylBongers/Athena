@@ -17,7 +17,7 @@ namespace Athena
 		/// <summary>
 		///     Gets or sets the guid of the service being referenced. Used for lookup.
 		/// </summary>
-		[JsonProperty("guid", Required = Required.Always)]
-		public Guid Guid { get; set; }
+		[JsonProperty("typeGuid", Required = Required.Always)]
+		public Guid TypeGuid { get; set; }
 	}
 }

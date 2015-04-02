@@ -68,16 +68,16 @@ namespace Athena
 			// Add all the services to the list
 			foreach (var requestedService in services)
 			{
-				// Look up the requested service by Guid
+				// Look up the requested service by TypeGuid
 				var foundService = AvailableServices
-					.FirstOrDefault(f => f.GetCustomAttribute<ServiceAttribute>().Guid == requestedService.Guid);
+					.FirstOrDefault(f => f.GetCustomAttribute<ServiceAttribute>().Guid == requestedService.TypeGuid);
 
 				// If we didn't find one, that's a problem
 				if (foundService == null)
 				{
 					throw new InvalidOperationException(
 						"Unable to load service \"" + requestedService.FriendlyName +
-						"\", no matching service Guid found.");
+						"\", no matching service TypeGuid found.");
 				}
 
 				// We did find one, so find the constructor so we can create it

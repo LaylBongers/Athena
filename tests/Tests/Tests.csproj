@@ -75,6 +75,7 @@
     <Compile Include="Toolbox\AthenaUpdateServiceTests.cs" />
     <Compile Include="Toolbox\AthenaWorldServiceTests.cs" />
     <Compile Include="Toolbox\EntityTests.cs" />
+    <Compile Include="Toolbox\WorldTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

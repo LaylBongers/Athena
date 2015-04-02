@@ -1,0 +1,49 @@
+﻿{
+	"children": [
+		{
+			"identifier": "Test Entity",
+			"data": [
+				{
+					"name": "Transform 2D",
+					"typeGuid": "52E5E89E-0597-467E-968E-F35BD54E4398",
+					"properties": {
+						"Position": "5,0",
+						"Rotation": "0"
+					}
+				}
+			],
+			"behaviors": [
+				{
+					"name": "Test Movement",
+					"typeGuid": "205DA45A-3A58-4536-83F3-9CC2C88062E1"
+				}
+			]
+		},
+		{
+			"identifier": "Follower Entity",
+			"data": [
+				{
+					"name": "Transform 2D",
+					"typeGuid": "52E5E89E-0597-467E-968E-F35BD54E4398",
+					"properties": {
+						"Position": "0,0",
+						"Rotation": "0"
+					}
+				},
+				{
+					"name": "Follower Data",
+					"typeGuid": "D056F4CB-3D20-4C5B-8957-582DB0DE9D7C",
+					"properties": {
+						"Target": "../Test Entity"
+					}
+				}
+			],
+			"behaviors": [
+				{
+					"name": "Follower",
+					"typeGuid": "3293CCBB-F0EA-4813-8C09-54374A35BED0"
+				}
+			]
+		}
+	]
+}

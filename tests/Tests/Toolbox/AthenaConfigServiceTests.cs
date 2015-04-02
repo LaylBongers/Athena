@@ -16,8 +16,8 @@ namespace Tests.Toolbox
 			const string expected2 = "12345";
 			var json = new JObject
 			{
-				{"Value1", expected1},
-				{"Value2", expected2}
+				["Value1"] = expected1,
+				["Value2"] = expected2
 			};
 			var service = new AthenaConfigService();
 

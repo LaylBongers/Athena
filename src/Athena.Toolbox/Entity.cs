@@ -12,7 +12,7 @@ namespace Athena.Toolbox
 		{
 			Behaviors = new ObservableCollection<IBehavior>();
 			Children = new ObservableCollection<Entity>();
-			Components = new ObservableCollection<object>();
+			Data = new ObservableCollection<object>();
 
 			Children.CollectionChanged += Children_CollectionChanged;
 		}
@@ -33,7 +33,7 @@ namespace Athena.Toolbox
 		public Entity Parent { get; private set; }
 
 		public ObservableCollection<IBehavior> Behaviors { get; }
-		public ObservableCollection<object> Components { get; }
+		public ObservableCollection<object> Data { get; }
 		public ObservableCollection<Entity> Children { get; }
 
 		public void Dispose()
@@ -66,7 +66,7 @@ namespace Athena.Toolbox
 				return;
 
 			var dependencies = externalDependencies
-				.Concat(Components)
+				.Concat(Data)
 				.Concat(new[] {this})
 				.ToList();
 
