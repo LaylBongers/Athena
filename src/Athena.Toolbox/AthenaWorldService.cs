@@ -9,9 +9,15 @@ namespace Athena.Toolbox
 	public sealed class AthenaWorldService : IService, IWorldService
 	{
 		private readonly List<object> _dependencies = new List<object>();
+		[Depend] private IConfigService _config;
 		[Depend] private Game _game;
 		private EventWaitHandle _waitHandle;
 		public Entity Root { get; set; } = new Entity();
+
+		/// <summary>
+		///     Gets a lock object that can be used to synchronize access to the world.
+		/// </summary>
+		public object Lock { get; } = new object();
 
 		public void Initialize()
 		{
@@ -20,6 +26,10 @@ namespace Athena.Toolbox
 			// Populate the dependencies so we can inject them on update
 			_dependencies.Add(_game);
 			_dependencies.AddRange(_game.Services);
+
+			var world = _config.Default.GetValue("defaultWorld");
+			if (world != null)
+				Root = World.LoadFile(world);
 		}
 
 		public void Dispose()
@@ -35,8 +45,12 @@ namespace Athena.Toolbox
 
 		public void Update(TimeSpan elapsed)
 		{
-			Root.ForceInitialize(_dependencies);
-			_waitHandle.Set();
+			// When updating the world should be locked
+			lock (Lock)
+			{
+				Root.ForceInitialize(_dependencies);
+				_waitHandle.Set();
+			}
 		}
 	}
 }

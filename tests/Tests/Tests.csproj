@@ -71,7 +71,8 @@
     <Compile Include="LoadPluginsInfoTests.cs" />
     <Compile Include="LoadServicesInfoTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Toolbox\AthenaGameLoopServiceTests.cs" />
+    <Compile Include="Toolbox\AthenaConfigServiceTests.cs" />
+    <Compile Include="Toolbox\AthenaUpdateServiceTests.cs" />
     <Compile Include="Toolbox\AthenaWorldServiceTests.cs" />
     <Compile Include="Toolbox\EntityTests.cs" />
   </ItemGroup>

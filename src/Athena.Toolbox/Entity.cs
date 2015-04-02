@@ -17,11 +17,24 @@ namespace Athena.Toolbox
 			Children.CollectionChanged += Children_CollectionChanged;
 		}
 
+		/// <summary>
+		///     Gets or sets the identifier of the entity.
+		/// </summary>
+		public string Identifier { get; set; }
+
+		/// <summary>
+		///     Gets if this entity has been initialized.
+		/// </summary>
 		public bool Initialized { get; private set; }
+
+		/// <summary>
+		///     Gets the parent of this entity, can be set by adding this entity to another entity's children.
+		/// </summary>
 		public Entity Parent { get; private set; }
+
 		public ObservableCollection<IBehavior> Behaviors { get; }
-		public ObservableCollection<Entity> Children { get; }
 		public ObservableCollection<object> Components { get; }
+		public ObservableCollection<Entity> Children { get; }
 
 		public void Dispose()
 		{

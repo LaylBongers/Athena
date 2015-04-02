@@ -4,15 +4,15 @@ using System.Threading;
 
 namespace Athena.Toolbox
 {
-	[Service("Athena Game Loop Service", "DE51302A-1D4D-4001-8BB8-1FD404B010D9")]
-	public sealed class AthenaGameLoopService : IService, IGameLoopService
+	[Service("Athena Update Service", "DE51302A-1D4D-4001-8BB8-1FD404B010D9")]
+	public sealed class AthenaUpdateService : IService, IUpdateService
 	{
 		[Depend] private Game _game;
 		[Depend] private ILoggingService _logging;
 		[Depend] private IWindowService _window;
 		[Depend] private IWorldService _world;
 		public TimeSpan TargetInterval { get; set; } = TimeSpan.FromSeconds(0.016);
-
+		
 		public void Initialize()
 		{
 			_game.RegisterRuntime(Runtime);
@@ -25,13 +25,13 @@ namespace Athena.Toolbox
 		public void Update(TimeSpan elapsed)
 		{
 			_window.ProcessEvents();
-
+			
 			_world.Update(elapsed);
 		}
 
 		private void Runtime(CancellationToken token)
 		{
-			_logging.Info("Starting Game Loop Runtime...");
+			_logging.Info("Starting Update Runtime...");
 
 			// Unfortunately, windows have to be created from the thread that will be polling for updates
 			// This means the game loop service runtime will have to be responsible for opening it

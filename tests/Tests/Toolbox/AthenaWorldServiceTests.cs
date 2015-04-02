@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using Athena;
 using Athena.Toolbox;
+using NSubstitute;
 using Xunit;
 
 namespace Tests.Toolbox
@@ -14,7 +16,11 @@ namespace Tests.Toolbox
 		{
 			// Arrange
 			var world = new AthenaWorldService();
-			Inject.Into(world, new[] {new Game()});
+
+			var config = Substitute.For<IConfigService>();
+			config.Default.Returns(new Config(new Dictionary<string, string>()));
+			Inject.Into(world, new object[] {new Game(), config});
+
 			world.Initialize();
 			var behavior = new TestBehavior();
 			world.Root.Children.Add(

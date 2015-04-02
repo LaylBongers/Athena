@@ -34,6 +34,10 @@
     <NoWarn>0649</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,22 +47,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AthenaGameLoopService.cs" />
+    <Compile Include="AthenaConfigService.cs" />
+    <Compile Include="AthenaUpdateService.cs" />
     <Compile Include="AthenaWorldService.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="IBehavior.cs" />
-    <Compile Include="IGameLoopService.cs" />
+    <Compile Include="IConfigService.cs" />
+    <Compile Include="IUpdateService.cs" />
     <Compile Include="ILoggingService.cs" />
     <Compile Include="IWindowService.cs" />
     <Compile Include="IWorldService.cs" />
     <Compile Include="AthenaLoggingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="World.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Athena\Athena.csproj">
       <Project>{c6fc9be4-ad34-400b-8e9d-b00641dda326}</Project>
       <Name>Athena</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
