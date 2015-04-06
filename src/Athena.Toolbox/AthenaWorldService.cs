@@ -16,8 +16,6 @@ namespace Athena.Toolbox
 		private readonly Dictionary<Guid, Type> _behaviorLookup = new Dictionary<Guid, Type>();
 		private readonly Dictionary<Guid, Type> _dataLookup = new Dictionary<Guid, Type>();
 		private readonly List<object> _dependencies = new List<object>();
-		[Depend] private IConfigService _config;
-		[Depend] private Game _game;
 		private EventWaitHandle _waitHandle;
 		public Entity Root { get; set; } = new Entity();
 
@@ -157,19 +155,29 @@ namespace Athena.Toolbox
 				entity.Behaviors.Add(behavior);
 			}
 
+			// Add any children that are requested
+			foreach (var requestedChild in info.Children)
+			{
+				entity.Children.Add(ConvertInfo(requestedChild));
+			}
+
 			return entity;
 		}
 
+		// ReSharper disable All
 		private class EntityInfo
 		{
 			[JsonProperty("identifier")]
 			public string Identifier { get; set; }
 
 			[JsonProperty("data")]
-			public List<DataInfo> Data { get; set; } = new List<DataInfo>();
+			public List<DataInfo> Data { get; } = new List<DataInfo>();
 
 			[JsonProperty("behaviors")]
-			public List<BehaviorInfo> Behaviors { get; set; } = new List<BehaviorInfo>();
+			public List<BehaviorInfo> Behaviors { get; } = new List<BehaviorInfo>();
+
+			[JsonProperty("children")]
+			public List<EntityInfo> Children { get; } = new List<EntityInfo>();
 		}
 
 		private class DataInfo
@@ -181,7 +189,7 @@ namespace Athena.Toolbox
 			public Guid TypeGuid { get; set; }
 
 			[JsonProperty("properties")]
-			public Dictionary<string, JToken> Properties { get; set; } = new Dictionary<string, JToken>();
+			public Dictionary<string, JToken> Properties { get; } = new Dictionary<string, JToken>();
 		}
 
 		private class BehaviorInfo
@@ -192,5 +200,14 @@ namespace Athena.Toolbox
 			[JsonProperty("typeGuid", Required = Required.Always)]
 			public Guid TypeGuid { get; set; }
 		}
+
+		// ReSharper restore All
+
+		#region Dependencies
+
+		[Depend] private IConfigService _config;
+		[Depend] private Game _game;
+
+		#endregion
 	}
 }

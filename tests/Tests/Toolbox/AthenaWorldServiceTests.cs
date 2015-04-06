@@ -81,8 +81,29 @@ namespace Tests.Toolbox
 			var data = world.Data.OfType<TestData>().FirstOrDefault();
 			Assert.NotNull(data);
 			Assert.Equal("Some Value", data.TestProperty);
+			Assert.Equal(5, data.TestIntProperty);
 
 			Assert.True(world.Behaviors.OfType<TestBehavior>().Any());
+		}
+
+		[Fact]
+		public void LoadJson_WithChild_LoadsChild()
+		{
+			// Arrange
+			var service = new AthenaWorldService();
+			var json = new JObject
+			{
+				["children"] = new JArray
+				{
+					new JObject()
+				}
+			};
+
+			// Act
+			var world = service.LoadWorld(json.ToString());
+
+			// Assert
+			Assert.True(world.Children.Any());
 		}
 
 		private class InitializableBehavior : IBehavior

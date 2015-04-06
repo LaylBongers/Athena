@@ -30,7 +30,7 @@ namespace Tests.Toolbox
 		}
 
 		[Fact]
-		public void ForceInitialize_EntityComponentAndExternal_InjectsDependencies()
+		public void ForceInitialize_EntityBehaviorAndExternal_InjectsDependencies()
 		{
 			// Arrange
 			var entity = new Entity();
@@ -48,6 +48,22 @@ namespace Tests.Toolbox
 			Assert.Same(entity, behavior.Entity);
 			Assert.Same(data, behavior.Data);
 			Assert.Same(external, behavior.External);
+		}
+
+		[Fact]
+		public void ForceInitialize_EntityWithBehavior_InitializesOnlyOnce()
+		{
+			// Arrange
+			var entity = new Entity();
+			var behavior = new InitializingBehavior();
+			entity.Behaviors.Add(behavior);
+
+			// Act
+			entity.ForceInitialize(new object[0]);
+			entity.ForceInitialize(new object[0]);
+
+			// Assert
+			Assert.Equal(1, behavior.InitializationCount);
 		}
 
 		private sealed class TestBehavior : IBehavior
@@ -83,6 +99,20 @@ namespace Tests.Toolbox
 
 			public void Initialize()
 			{
+			}
+
+			public void Dispose()
+			{
+			}
+		}
+
+		private sealed class InitializingBehavior : IBehavior
+		{
+			public int InitializationCount { get; set; }
+
+			public void Initialize()
+			{
+				InitializationCount++;
 			}
 
 			public void Dispose()
