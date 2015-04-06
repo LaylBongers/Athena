@@ -6,5 +6,6 @@ namespace Athena.Toolbox
 	{
 		void WaitForUpdate();
 		void Update(TimeSpan elapsed);
+		Entity LoadWorld(string json);
 	}
 }

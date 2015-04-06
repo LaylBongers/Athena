@@ -4,6 +4,5 @@
 	{
 		Config Default { get; }
 		Config LoadJson(string json);
-		Config LoadFile(string file);
 	}
 }

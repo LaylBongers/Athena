@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 
@@ -11,18 +10,13 @@ namespace Athena.Toolbox
 	{
 		private Config _default;
 
-		public Config Default => _default ?? (_default = LoadFile("Config.json"));
+		public Config Default => _default ?? (_default = LoadJson(File.ReadAllText("Config.json")));
 
 		public Config LoadJson(string json)
 		{
 			return new Config(JsonConvert.DeserializeObject<Dictionary<string, string>>(json));
 		}
-
-		public Config LoadFile(string file)
-		{
-			return LoadJson(File.ReadAllText(file));
-		}
-
+		
 		public void Initialize()
 		{
 		}

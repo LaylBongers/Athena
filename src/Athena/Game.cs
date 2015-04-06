@@ -34,7 +34,7 @@ namespace Athena
 		{
 			_runtimeCancel.Dispose();
 		}
-		
+
 		public void LoadPlugins(LoadPluginsInfo info)
 		{
 			Validate.NotNull(info, "info");

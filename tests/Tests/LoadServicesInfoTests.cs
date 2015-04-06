@@ -20,7 +20,7 @@ namespace Tests
 				new JObject
 				{
 					["name"] = expectedName,
-					["guid"] = expectedGuid
+					["typeGuid"] = expectedGuid
 				}
 			}.ToString();
 

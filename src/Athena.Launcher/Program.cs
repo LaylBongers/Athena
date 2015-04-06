@@ -1,4 +1,6 @@
-﻿namespace Athena.Launcher
+﻿using System.IO;
+
+namespace Athena.Launcher
 {
 	internal class Program
 	{
@@ -9,7 +11,7 @@
 				var loadPluginsInfo = LoadPluginsInfo.FromDirectory("./Plugins/");
 				game.LoadPlugins(loadPluginsInfo);
 
-				var loadServicesInfo = LoadServicesInfo.FromFile("./Services.json");
+				var loadServicesInfo = LoadServicesInfo.FromJson(File.ReadAllText("./Services.json"));
 				game.LoadServices(loadServicesInfo);
 
 				game.Run();

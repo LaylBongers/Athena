@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6F990BBB-EDFF-4075-B88B-D4F8182DF8D3}</ProjectGuid>
+    <ProjectGuid>{6407F753-E608-4F77-9C6D-8A8DE2F77413}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Athena.Toolbox</RootNamespace>
-    <AssemblyName>Athena.Toolbox</AssemblyName>
+    <RootNamespace>Athena.Launcher.ExamplePlugin</RootNamespace>
+    <AssemblyName>Athena.Launcher.ExamplePlugin</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,9 +16,9 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>$(SolutionDir)artifacts\bin\Athena.Toolbox\Debug\</OutputPath>
-    <IntermediateOutputPath>$(SolutionDir)artifacts\obj\Athena.Toolbox\Debug\</IntermediateOutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>$(SolutionDir)artifacts\bin\Athena.Launcher.ExamplePlugin\Debug\</OutputPath>
+    <IntermediateOutputPath>$(SolutionDir)artifacts\obj\Athena.Launcher.ExamplePlugin\Debug\</IntermediateOutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0649</NoWarn>
@@ -26,18 +26,14 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>$(SolutionDir)artifacts\bin\Athena.Toolbox\Release\</OutputPath>
-    <IntermediateOutputPath>$(SolutionDir)artifacts\obj\Athena.Toolbox\Release\</IntermediateOutputPath>
+    <OutputPath>$(SolutionDir)artifacts\bin\Athena.Launcher.ExamplePlugin\Release\</OutputPath>
+    <IntermediateOutputPath>$(SolutionDir)artifacts\obj\Athena.Launcher.ExamplePlugin\Release\</IntermediateOutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0649</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,30 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AthenaConfigService.cs" />
-    <Compile Include="AthenaUpdateService.cs" />
-    <Compile Include="AthenaWorldService.cs" />
-    <Compile Include="Config.cs" />
-    <Compile Include="Entity.cs" />
-    <Compile Include="EntityBehaviorAttribute.cs" />
-    <Compile Include="EntityDataAttribute.cs" />
-    <Compile Include="IBehavior.cs" />
-    <Compile Include="IConfigService.cs" />
-    <Compile Include="IUpdateService.cs" />
-    <Compile Include="ILoggingService.cs" />
-    <Compile Include="IWindowService.cs" />
-    <Compile Include="IWorldService.cs" />
-    <Compile Include="AthenaLoggingService.cs" />
+    <Compile Include="FollowerBehavior.cs" />
+    <Compile Include="FollowerData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Athena\Athena.csproj">
-      <Project>{c6fc9be4-ad34-400b-8e9d-b00641dda326}</Project>
-      <Name>Athena</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="TestMovementBehavior.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
