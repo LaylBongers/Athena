@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using Newtonsoft.Json;
@@ -32,6 +33,25 @@ namespace Athena.Toolbox
 			_dependencies.Add(_game);
 			_dependencies.AddRange(_game.Services);
 
+			// Scan all plugins for data and behavior types
+			foreach (var type in _game.LoadedPlugins.SelectMany(p => p.ExportedTypes))
+			{
+				var dataAttr = type.GetCustomAttribute<EntityDataAttribute>();
+				if (dataAttr != null)
+				{
+					_dataLookup.Add(dataAttr.Guid, type);
+					continue;
+				}
+
+				var behaviorAttr = type.GetCustomAttribute<EntityBehaviorAttribute>();
+				if (behaviorAttr != null)
+				{
+					_behaviorLookup.Add(behaviorAttr.Guid, type);
+					continue;
+				}
+			}
+
+			// Load in the default world
 			var world = _config.Default.GetValue("defaultWorld");
 			if (world != null)
 				Root = LoadWorld(File.ReadAllText(world));

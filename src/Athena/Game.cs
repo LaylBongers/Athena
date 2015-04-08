@@ -11,14 +11,18 @@ namespace Athena
 {
 	public sealed class Game : IDisposable
 	{
+		private readonly List<Assembly> _loadedPlugins = new List<Assembly>();
 		private readonly CancellationTokenSource _runtimeCancel = new CancellationTokenSource();
 		private readonly List<Action<CancellationToken>> _runtimes = new List<Action<CancellationToken>>();
 		private readonly List<IService> _services = new List<IService>();
 
 		public Game()
 		{
+			LoadedPlugins = new ReadOnlyCollection<Assembly>(_loadedPlugins);
 			Services = new ReadOnlyCollection<IService>(_services);
 		}
+
+		public ReadOnlyCollection<Assembly> LoadedPlugins { get; }
 
 		/// <summary>
 		///     Gets a collection of services available to be loaded on LoadServices.
@@ -44,6 +48,7 @@ namespace Athena
 				// Load in the assembly, .NET automatically prevents duplicate loading
 				Trace.WriteLine("Loading plugin \"" + assemblyName + "\"...");
 				var assembly = Assembly.Load(assemblyName);
+				_loadedPlugins.Add(assembly);
 
 				// Scan the assembly for exported types that implement IService
 				var types = assembly.ExportedTypes.Where(t => typeof (IService).IsAssignableFrom(t));

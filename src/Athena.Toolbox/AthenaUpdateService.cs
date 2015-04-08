@@ -7,12 +7,6 @@ namespace Athena.Toolbox
 	[Service("Athena Update Service", "DE51302A-1D4D-4001-8BB8-1FD404B010D9")]
 	public sealed class AthenaUpdateService : IService, IUpdateService
 	{
-		[Depend] private Game _game;
-		[Depend] private ILoggingService _logging;
-		[Depend] private IWindowService _window;
-		[Depend] private IWorldService _world;
-		public TimeSpan TargetInterval { get; set; } = TimeSpan.FromSeconds(0.016);
-		
 		public void Initialize()
 		{
 			_game.RegisterRuntime(Runtime);
@@ -22,10 +16,12 @@ namespace Athena.Toolbox
 		{
 		}
 
+		public TimeSpan TargetInterval { get; set; } = TimeSpan.FromSeconds(0.016);
+
 		public void Update(TimeSpan elapsed)
 		{
 			_window.ProcessEvents();
-			
+
 			_world.Update(elapsed);
 		}
 
@@ -60,5 +56,14 @@ namespace Athena.Toolbox
 				Thread.Sleep(1);
 			}
 		}
+
+		#region Dependencies
+
+		[Depend] private Game _game;
+		[Depend] private ILoggingService _logging;
+		[Depend] private IWindowService _window;
+		[Depend] private IWorldService _world;
+
+		#endregion
 	}
 }
